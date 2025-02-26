@@ -20,16 +20,23 @@ def detect_gesture(image):
     if results.multi_hand_landmarks:
         landmarks = results.multi_hand_landmarks[0]
         
+        # Определяем ориентацию руки
+        wrist_y = landmarks.landmark[0].y
+        middle_finger_y = landmarks.landmark[12].y
+        is_inverted = middle_finger_y > wrist_y
+        
         # Подсчет поднятых пальцев
         finger_count = 0
         
-        # Проверяем большой палец
-        if landmarks.landmark[4].x > landmarks.landmark[3].x:
+        # Проверяем большой палец с учетом ориентации
+        if (not is_inverted and landmarks.landmark[4].x > landmarks.landmark[3].x) or \
+           (is_inverted and landmarks.landmark[4].x < landmarks.landmark[3].x):
             finger_count += 1
             
-        # Проверяем остальные пальцы
+        # Проверяем остальные пальцы с учетом ориентации
         for tip_id in [8, 12, 16, 20]:  # Индексы кончиков пальцев
-            if landmarks.landmark[tip_id].y < landmarks.landmark[tip_id - 2].y:
+            if (not is_inverted and landmarks.landmark[tip_id].y < landmarks.landmark[tip_id - 2].y) or \
+               (is_inverted and landmarks.landmark[tip_id].y > landmarks.landmark[tip_id - 2].y):
                 finger_count += 1
         
         # Определение жеста
@@ -44,7 +51,7 @@ def detect_gesture(image):
 
 def main():
     # Путь к изображению
-    image_path = "hand.jpg"
+    image_path = "image.jpg"
     
     try:
         image = cv2.imread(image_path)
