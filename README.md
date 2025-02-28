@@ -121,19 +121,19 @@ python manage.py runserver
     </td>
     <td align="center">
       <img src="https://github.com/dencraz.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>Даниил Сапронов</b><br />
+      <b>-</b><br />
       GitHub: <a href="https://github.com/dencraz">@dencraz</a><br />
       Telegram: <a href="https://t.me/dencraz">@dencraz</a>
     </td>
     <td align="center">
       <img src="https://github.com/Xqyat.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>Роман Колесников</b><br />
+      <b>-</b><br />
       GitHub: <a href="https://github.com/Xqyat">@Xqyat</a><br />
       Telegram: <a href="https://t.me/Forliot">@Forliot</a>
     </td>
     <td align="center">
       <img src="https://github.com/Malanhei.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>Владимир Цызов</b><br />
+      <b>-</b><br />
       GitHub: <a href="https://github.com/Malanhei">@Malanhei</a><br />
       Telegram: <a href="https://t.me/malanhei">@malanhei</a>
     </td>
