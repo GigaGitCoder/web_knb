@@ -1,10 +1,9 @@
-<div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
+<div align="center" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
                 <img alt="Logo" class="logo flex-item" src="templates/images/Logo.svg" width="150" height="150"/>
-                <h1 style="font-size: 5rem; font-weight: bold;">ВебКНБ</h1>
-            </div>
-<br><br>
+</div>
 <div align="center">
-
+<h1>ВебКНБ (Web Rock Paper Scissors)</h1>
+  
 [![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url]
 
 [contributors-shield]: https://img.shields.io/github/contributors/GigaGitCoder/web_knb.svg?style=for-the-badge
