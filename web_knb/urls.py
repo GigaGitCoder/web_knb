@@ -1,22 +1,22 @@
-"""
-URL configuration for web_knb project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
 from django.urls import path
+from knb.views import index_page, game_page, sign_in_page, sign_up_page, logout_and_redirect, send_scores, profile_page
+from django.conf import settings
+from django.conf.urls.static import static
+
+from django.urls import path
+from knb.views import upload_image
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+    path('', index_page, name='index'),
+    path('game/', game_page, name='game'),
+    path('signin/', sign_in_page, name='signin'),
+    path('signup/', sign_up_page, name='signup'),
+    path('upload/', upload_image, name='upload_image'),
+    path('scores/', send_scores, name='upload_image'),
+    path('logout/', logout_and_redirect, name='logout'),
+    path('profile/', profile_page, name='profile'),
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

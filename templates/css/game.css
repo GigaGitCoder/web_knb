@@ -1,0 +1,296 @@
+body{
+    display: block;
+    margin: auto;
+    padding: auto;
+    justify-content: space-evenly;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.bg-custom {
+    background-color: #071422;
+}
+.text-custom {
+    color: #142B42;
+}
+.btn-custom {
+    background-color: #1E40AF;
+    color: #142B42;
+}
+.btn-custom:hover {
+    background-color: #1E40AF;
+}
+
+/* .gameBoard {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.leadersBoard {
+    width: 20%;
+}
+
+.gamePart {
+    width: 20%;
+}
+
+.rulesBoard {
+    width: 20%;
+} */
+.LANAndScore{
+    display: block;
+    justify-items: center;
+}
+.flex-horizontal{
+    margin-bottom: 0px;
+}
+.logoAndName{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 40px;
+    background: #142B42;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 27px 27px 0px 0px;
+    padding: 5px;
+    align-items: center;
+}
+
+.scoreBlock{
+    width: 220px;
+    margin-top: 10px;
+}
+
+.dividingLine{
+    border: 1.5px solid gainsboro;
+    height: 1rem;
+
+}
+
+.score{
+    display: flex;
+    justify-content: space-around; 
+    justify-items: center;
+    align-items: center;
+    background: #142B42;
+    font-size: 20px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 20px 20px;
+}
+
+.create-line {
+    height: 40px;
+    border-left: 3px solid white;
+  }
+
+  .mainPart{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .gamePart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #142B42;
+    border-radius: 28px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .leadersBoard, .rulesBoard{
+    display: block;
+    align-items: center;
+  }
+
+  
+.headerOfBoard{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 28px 28px 0px 0px;
+    height: 50px;
+    margin-bottom: 10px;  
+    text-align: center;
+    align-content: center;
+    background: #142B42;
+}
+
+.mainPartOfBoard{
+    width: 300px;
+    height: 650px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 14px;
+    background: #142B42;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 28px 28px;
+}
+.leadersBoard .mainPartOfBoard ul {
+    margin: 0; /* Убираем стандартные отступы у списка */
+    padding: 0; /* Убираем стандартные отступы у списка */
+    list-style: none; /* Убираем маркеры списка */
+    display: flex; /* Используем flexbox для списка */
+    flex-direction: column; /* Элементы размещаются по вертикали */
+    height: 100%; /* Список занимает всю высоту родительского блока */
+}
+
+.leadersBoard .mainPartOfBoard li {
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    background-color: #071422;
+    border-radius: 15px;
+    padding: 0px 20px;
+    margin-bottom: 10px; 
+}
+
+.leadersBoard .mainPartOfBoard li:last-child {
+    margin-bottom: 0; 
+}
+
+.place{
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    background-color: #071422;
+    border-radius: 15px;
+    padding: 0px 20px;
+}
+.place p {
+    display: flex;
+}
+
+.gestureWindows{
+    display: flex;
+    justify-content: space-between;
+  }
+.gestureWindowBlock{
+    display: block;
+    margin: 35px;
+  }
+
+.gestureWindow{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    background-color: #717171;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+.emojiGesture{
+    font-size: 100px;
+}
+.turnOn{
+    margin-top: 10px;
+    align-items: center;
+    background-color: #021A31;
+    border-radius: 15px;
+}
+
+#computerGesture{
+    background-color: #142B42;
+    border: 3px solid black;
+    width: 200px;
+  }
+
+#readyButton{
+    background-color: #021A31;
+    padding: 10px 0px;
+    margin-bottom: 35px;
+    width: 200px;
+  }
+
+.waysToWin{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+}
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row h4{
+    font-size: 30px;
+}
+
+
+.camera-app__button:hover {
+    background-color: #2563eb;
+}
+.camera-app {
+    background-color: white;
+/* Основной контейнер для приложения камеры */
+.camera-app {
+    background-color: #142B42; /* Белый фон */
+    padding: 1.5rem; /* Внутренние отступы */
+    border-radius: 0.5rem; /* Скругленные углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для эффекта объема */
+    text-align: center; /* Центрирование текста */
+}
+
+/* Видеоэлемент для отображения потока с камеры */
+.camera-app__video {
+    width: 100%; /* Ширина на всю доступную область */
+    height: 16rem; /* Высота */
+    background-color: #142B42; /* Фоновый цвет */
+    border-radius: 0.5rem; /* Скругленные углы */
+    margin-bottom: 1rem; /* Отступ снизу */
+}
+
+/* Кнопка для управления камерой */
+.camera-app__button {
+    background-color: #3b82f6; /* Синий фон */
+    color: white; /* Белый цвет текста */
+ /* Внутренние отступы */
+    border-radius: 0.5rem; /* Скругленные углы */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+/* Эффект при наведении на кнопку */
+.camera-app__button:hover {
+    background-color: #2563eb; /* Темно-синий фон при наведении */
+}
+.camera-app {
+    border-radius: 0.5rem; /* Скругленные углы */
+    cursor: pointer; /* Курсор в виде указателя */
+    border: 3px solid #021A31; /* Обводка 3px с цветом #021A31 */
+}
+
+/* Эффект при наведении на кнопку */
+.camera-app__button:hover {
+    background-color: #2563eb; /* Темно-синий фон при наведении */
+}
+.camera-app__button:hover {
+    background-color: #2563eb; /* Темно-синий фон при наведении */
+}
+
+.footer {
+    margin-top: auto;
+    width: 100%;
+    background-color: #071422;
+    color: wh50te;
+    padding: 1rem; /* Отступ со всех сторон */
+    display: block;
+    text-align: center; /* Выравнивание текста по центру */
+}}
+
+.footer-container {
+    padding: 50rem; /* Отступ со всех сторон */;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+
+#userCamera {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы видео заполняло контейнер */
+    background-color: #717171; /* Фон на случай, если видео не загружено */
+}

@@ -1,8 +1,24 @@
 import cv2
 import mediapipe as mp
+import os
+import logging
+
+# Suppress MediaPipe log messages
+logging.getLogger('mediapipe').setLevel(logging.ERROR)
+# Suppress absl log messages
+logging.getLogger('absl').setLevel(logging.ERROR)
+os.environ['GLOG_minloglevel'] = '2'
 
 
-def detect_gesture(image):
+# Suppress MediaPipe log messages
+logging.getLogger('mediapipe').setLevel(logging.ERROR)
+# Suppress absl log messages
+logging.getLogger('absl').setLevel(logging.ERROR)
+
+
+
+def detect_gesture(image): 
+
     # Инициализация MediaPipe Hands
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(
@@ -49,20 +65,17 @@ def detect_gesture(image):
         
     return "Рука не обнаружена"
 
+import sys
+from gesture_detector import GestureDetector
+
 def main():
-    # Путь к изображению
-    image_path = "image.jpg"
-    
-    try:
-        image = cv2.imread(image_path)
-        result = detect_gesture(image)
-        # Добавляем кодировку для корректного отображения русских букв
-        print(f"Определенный жест: {result}".encode('utf-8').decode(encoding='cp1251'))
-        
-    except Exception as e:
-        print(f"Подробности ошибки: {str(e)}")
-        import traceback
-        traceback.print_exc()
+    # Путь к папке с изображениями
+    if len(sys.argv) < 2:
+        print("Использование: python hand_gesture_game.py <путь_к_папке>")
+        return
+    folder_path = sys.argv[1]  # Укажите путь к папке с изображениями
+    detector = GestureDetector(folder_path)
+    detector.process_images()
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,152 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: url('../images/backrgound.svg') no-repeat center center fixed;
+    background-color: #0B2238;
+    background-size: cover;
+    margin: 0;
+    color: white;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: 70px;
+    width: 100%;
+    background-color: #071422;
+    color: white;
+    padding: 3rem 0;
+    display: block;
+    text-align: center;
+}
+
+.flex-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative; /* Для позиционирования псевдоэлемента */
+    overflow: hidden; /* Скрыть выходящие за пределы элементы */
+}
+
+.flex-horizontal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    opacity: 0; /* Изначально невидим */
+    transition: opacity 0.3s ease; /* Плавный переход для прозрачности */
+    z-index: 0; /* Псевдоэлемент будет под содержимым */
+}
+
+
+.flex-horizontal .logo,
+.flex-horizontal .title {
+    position: relative; /* Для того, чтобы текст и логотип были над псевдоэлементом */
+    z-index: 1; /* Убедитесь, что содержимое выше псевдоэлемента */
+    transition: transform 0.3s ease; /* Плавный переход для логотипа и заголовка */
+}
+
+.flex-horizontal:hover .logo,
+.flex-horizontal:hover .title {
+    transform: scale(1.05); /* Увеличение логотипа и заголовка при наведении */
+}
+
+.flex-item {
+    margin: 5px;    
+}
+
+.title {
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.login-container {
+    top: 20px;
+    background-color: #071422; 
+    padding: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: 90%; /* Изменено на 90% для адаптивности */
+    max-width: 400px; /* Максимальная ширина для больших экранов */
+    margin: auto; /* Центрирование контейнера */
+    text-align: center; /* Центрирование текста внутри контейнера */
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+label {
+    color: white;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    
+}
+
+button {
+    width: 100%; /* Полная ширина для адаптивности */
+    padding: 0.5rem;
+    background-color: #142B42;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0B2238; /* Изменение цвета при наведении */
+}
+
+.button-login {
+    width: 85%;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.create-account {
+    text-align: left;
+    padding-top: 0;
+    text-decoration: underline;
+}
+
+.mb-4 {
+    margin: 0 8% 0 8%;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    
+}
+.stroke-input{
+    background-color: #142B42; /* Цвет фона внутри input*/
+    color: white; /* Цвет текста */
+    border: 1px solid #ccc; /* Цвет границы */
+    padding: 0.5rem; /* Отступы внутри поля */
+    border-radius: 0.25rem; /* Закругление углов */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75);
+    width: auto;
+}
+
+.margin-top {
+    margin-top: 10px;
+}
+
+.alert {
+    text-align: left;
+    font-weight: normal;
+    margin-top: 2px;
+}

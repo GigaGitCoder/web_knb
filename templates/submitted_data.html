@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Отправленные данные</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="login-container">
+        <h2>Отправленные данные:</h2>
+        <p>Логин: {{ submitted_data.login }}</p>
+        <p>Пароль: {{ submitted_data.password }}</p>
+        <a href="{% url 'signin' %}" class="button-login">Назад</a>
+    </div>
+</body>
+</html> 

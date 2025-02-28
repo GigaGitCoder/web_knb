@@ -1,0 +1,150 @@
+.header{
+    height: 125px;
+    background: #142B42;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.headerBar {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение пространства */
+    align-items: center;
+    height: 130px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px; /* Расстояние между ссылками */
+    align-items: center; /* Выравнивание по вертикали */
+    padding: 0px;
+}
+
+.nav-links, .DRL-menu li{
+    background-color: #142B42;
+    list-style: none;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 0.4s ease-in-out;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.75);
+}
+
+.nav-links:hover, .DRL-menu li:hover{
+    background-color: #616e8d;
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.if-logged {
+    display: flex;
+    column-gap: 10px;
+    width: 277px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.if-logged p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+.if-logged a:hover{
+    text-decoration: underline;
+
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: #142B42;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    color: white;
+}
+
+.profile-email {
+    color: #B0B0B0;
+    font-size: 1.1rem;
+}
+
+.stats-container {
+    margin-top: 2rem;
+}
+
+.stats-card {
+    background: #142B42;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #B0B0B0;
+    font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+} 
