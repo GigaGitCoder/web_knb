@@ -32,15 +32,15 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/web_knb.git
+git clone https://github.com/GigaGitCoder/web_knb.git
 cd web_knb
 ```
 
 2. Создайте виртуальное окружение и активируйте его:
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/MacOS
-venv\Scripts\activate     # Windows
+source venv\Scripts\activate # Linux/MacOS
+venv\Scripts\activate # Windows
 ```
 
 3. Установите зависимости:
