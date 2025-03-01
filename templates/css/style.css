@@ -29,8 +29,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    position: relative; /* Для позиционирования псевдоэлемента */
-    overflow: hidden; /* Скрыть выходящие за пределы элементы */
+    position: relative; 
+    overflow: hidden; 
 }
 
 .flex-horizontal::before {
@@ -40,23 +40,23 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-    opacity: 0; /* Изначально невидим */
-    transition: opacity 0.3s ease; /* Плавный переход для прозрачности */
-    z-index: 0; /* Псевдоэлемент будет под содержимым */
+    background-color: rgba(0, 0, 0, 0.5); 
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+    z-index: 0; 
 }
 
 
 .flex-horizontal .logo,
 .flex-horizontal .title {
-    position: relative; /* Для того, чтобы текст и логотип были над псевдоэлементом */
-    z-index: 1; /* Убедитесь, что содержимое выше псевдоэлемента */
-    transition: transform 0.3s ease; /* Плавный переход для логотипа и заголовка */
+    position: relative; 
+    z-index: 1; 
+    transition: transform 0.3s ease; 
 }
 
 .flex-horizontal:hover .logo,
 .flex-horizontal:hover .title {
-    transform: scale(1.05); /* Увеличение логотипа и заголовка при наведении */
+    transform: scale(1.05); 
 }
 
 .flex-item {
@@ -76,10 +76,10 @@ body {
     padding-right: 0;
     border-radius: 0.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    width: 90%; /* Изменено на 90% для адаптивности */
-    max-width: 400px; /* Максимальная ширина для больших экранов */
-    margin: auto; /* Центрирование контейнера */
-    text-align: center; /* Центрирование текста внутри контейнера */
+    width: 90%; 
+    max-width: 400px; 
+    margin: auto; 
+    text-align: center; 
     margin-top: 10%;
     margin-bottom: 10%;
 }
@@ -92,7 +92,7 @@ label {
 }
 
 button {
-    width: 100%; /* Полная ширина для адаптивности */
+    width: 100%; 
     padding: 0.5rem;
     background-color: #142B42;
     color: white;
@@ -102,7 +102,7 @@ button {
 }
 
 button:hover {
-    background-color: #0B2238; /* Изменение цвета при наведении */
+    background-color: #0B2238; 
 }
 
 .button-login {
@@ -132,11 +132,11 @@ a {
     
 }
 .stroke-input{
-    background-color: #142B42; /* Цвет фона внутри input*/
-    color: white; /* Цвет текста */
-    border: 1px solid #ccc; /* Цвет границы */
-    padding: 0.5rem; /* Отступы внутри поля */
-    border-radius: 0.25rem; /* Закругление углов */
+    background-color: #142B42; 
+    color: white; 
+    border: 1px solid #ccc; 
+    padding: 0.5rem; 
+    border-radius: 0.25rem; 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.75);
     width: auto;
 }
