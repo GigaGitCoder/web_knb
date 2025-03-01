@@ -32,7 +32,7 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/yourusername/web_knb.git
+git clone https://github.com/GigaGitCoder/web_knb.git
 cd web_knb
 ```
 
