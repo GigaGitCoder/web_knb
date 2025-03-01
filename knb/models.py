@@ -36,10 +36,6 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
     objects = CustomUserManager()
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.set_password()
-
+    
     def __str__(self):
         return self.username

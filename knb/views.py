@@ -1,10 +1,8 @@
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
-from .models import User  # Импортируем модель User
-from django.contrib.auth.forms import AuthenticationForm
+from .models import User
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, ProfilePictureForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.hashers import make_password, check_password
 from random import choice
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -98,7 +96,7 @@ def upload_image(request):
             data = json.loads(request.body)
             image_data = data['image']
 
-            # Убираем префикс "data:image/png;base64,"
+            # Убираем префикс
             format, imgstr = image_data.split(';base64,') 
             ext = format.split('/')[-1]  # Получаем расширение файла
 
@@ -138,9 +136,6 @@ def upload_image(request):
 
 
             # Возвращаем результат
-            print(result)
-            # print(User.objects.filter(username=request.user.username).get('wins'))
-            # print(User.objects.filter(username=request.user.username).get('loses'))
             return JsonResponse({
                 'status': 'success',
                 'user_gesture': user_gesture,

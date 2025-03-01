@@ -93,7 +93,7 @@
                 </div>
 
                 <p>Готовы выбрать жест?</p>
-                <button id="readyButton" onclick="startCountdown()">Готов</button>
+                <button id="readyButton" onclick="startCountdown()" disabled="true">Готов</button>
             </div>
             <div class="rulesBoard">
                 <div class="headerOfBoard">
@@ -188,6 +188,7 @@
                 // Если камера уже включена, выключаем её
                 video.srcObject.getTracks().forEach(track => track.stop());
                 video.srcObject = null;
+                document.getElementById('readyButton').disabled = true;
                 button.innerText = 'Включить';
             } else {
                 // Если камера выключена, включаем её
@@ -195,6 +196,7 @@
                     .then(function(stream) {
                         video.srcObject = stream; // Передаем поток в элемент video
                         video.play(); // Воспроизводим видео
+                        document.getElementById('readyButton').disabled = false;
                         button.innerText = 'Выключить';
                     })
                     .catch(function(err) {

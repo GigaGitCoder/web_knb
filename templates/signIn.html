@@ -28,14 +28,6 @@
             <h2 class="subtitle">Вход</h2>
             <form method="POST" action="{% url 'signin' %}">
                 {% csrf_token %}
-                <!-- <div class="mb-4">
-                    <label class="login-signln" for="login">Логин</label>
-                    <input class="stroke-input" id="login" name="login" type="text" required/>
-                </div>
-                <div class="mb-4">
-                    <label class="login-signln" for="password">Пароль</label>
-                    <input class="stroke-input" id="password" name="password" type="password" required/>
-                </div> -->
                 {% for field in form %}
                 <div class="mb-4">
                     {{ field.label_tag }}
