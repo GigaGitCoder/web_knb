@@ -145,7 +145,7 @@ python manage.py runserver
     </td>
     <td align="center">
       <img src="https://github.com/dencraz.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>-</b><br />
+      <b>Даниил Сапронов</b><br />
       GitHub: <a href="https://github.com/dencraz">@dencraz</a><br />
       Telegram: <a href="https://t.me/dencraz">@dencraz</a>
     </td>
