@@ -32,7 +32,7 @@
         <div class="mainPart">
             <div class="leadersBoard">
                 <div class="headerOfBoard">
-                    <h2>Таблица лидеров</h2>
+                    <h2 class="text-xl font-bold">Таблица лидеров</h2>
                 </div>
                 <div class="mainPartOfBoard">
                     <ul>
@@ -68,169 +68,32 @@
                         <div class="gestureWindow">
                             <span id="computerChoice" class="emojiGesture"></span>
                         </div>
+                        <div class="infinite-game-checkbox" style="margin-top: 10px; text-align: center;">
+                            <label style="color: white; cursor: pointer;">
+                                <input type="checkbox" id="infiniteGame" style="cursor: pointer;"> Бесконечная игра
+                            </label>
+                        </div>
                     </div>  
                 </div>
+
+                <div class="game-result" style="
+                    text-align: center;
+                    margin: 20px auto;
+                    padding: 15px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    border-radius: 10px;
+                    width: fit-content;
+                    min-width: 200px;
+                ">
+                    <span id="gameResult" style="
+                        color: white;
+                        font-size: 1.2em;
+                        font-weight: bold;
+                    ">Результат игры</span>
+                </div>
+
                 <p>Готовы выбрать жест?</p>
-        <button id="readyButton" onclick="startCountdown()">Готов</button>
-        <p id="computerChoice"></p>
-
-    <script>
-        // Функция для включения/выключения камеры
-        function toggleCamera(button) {
-            const video = document.getElementById('userCamera'); // Получаем элемент video по id
-
-            if (!video) {
-                console.error("Элемент video не найден!");
-                return;
-            }
-
-            if (video.srcObject) {
-                // Если камера уже включена, выключаем её
-                video.srcObject.getTracks().forEach(track => track.stop());
-                video.srcObject = null;
-                button.innerText = 'Включить';
-            } else {
-                // Если камера выключена, включаем её
-                navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(function(stream) {
-                        video.srcObject = stream; // Передаем поток в элемент video
-                        video.play(); // Воспроизводим видео
-                        button.innerText = 'Выключить';
-                    })
-                    .catch(function(err) {
-                        console.error("Ошибка при доступе к веб-камере: ", err);
-                        alert("Не удалось получить доступ к камере. Убедитесь, что камера подключена и доступ разрешён.");
-                    });
-            }
-        }
-
-
-                // Функция для захвата изображения с камеры и отправки на сервер
-        function captureAndSendImage() {
-            const video = document.getElementById('userCamera');
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            const imageData = canvas.toDataURL('image/png');
-
-            sendImageToServer(imageData);
-        }
-
-        // Функция для отправки изображения на сервер
-        function sendImageToServer(imageData) {
-            fetch('/upload/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
-                },
-                body: JSON.stringify({ image: imageData })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    
-                    // Получаем жест компьютера из элемента
-                    const computerGesture = data.computer_gesture;
-                    document.getElementById('computerChoice').innerText = computerGesture === "Камень" ? "✊" : 
-                                                    computerGesture === "Бумага" ? "✋" : "✌️";
-                    
-                    // Определяем победителя
-                    const result = data.result;
-                    
-                    // Отображаем результат
-                    const readyButton = document.getElementById('readyButton');
-                    readyButton.innerText = result;
-                    
-                    // Обновляем счёт
-                    updateScores()
-
-                    // Через 3 секунды возвращаем кнопку в исходное состояние
-                    setTimeout(() => {
-                        readyButton.innerText = 'Готов';
-                    }, 1000);
-                } else {
-                    console.error('Ошибка:', data.message);
-                    document.getElementById('readyButton').innerText = 'Готов';
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка при отправке:', error);
-                document.getElementById('readyButton').innerText = 'Готов';
-            });
-        }
-
-        async function updateScores() {
-            fetch('/scores/', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    
-                    document.getElementById('wins').innerText = data.wins;
-                    document.getElementById('loses').innerText = data.loses;
-
-                } else {
-                    console.error('Ошибка:', data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка при отправке запроса:', error);
-            });
-        }
-
-        // Функция для получения CSRF токена
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        // Пример использования в вашей функции startCountdown
-        function startCountdown() {
-            let countdown = 3; // Начинаем с 3 секунд
-            const button = document.getElementById('readyButton');
-            button.disabled = true; // Отключаем кнопку во время отсчета
-
-            const interval = setInterval(() => {
-                button.innerText = countdown; // Обновляем текст кнопки
-                countdown--;
-
-                if (countdown < 0) {
-                    clearInterval(interval);
-                    // button.innerText = 'Готов'; // Восстанавливаем текст кнопки
-                    button.disabled = false; // Включаем кнопку обратно
-
-                    // // Вызываем функцию выбора компьютера (если она нужна)
-                    // generateComputerChoice();
-
-                    // Захватываем изображение с веб-камеры и отправляем его на сервер
-                    captureAndSendImage();
-                }
-            }, 1000); // Интервал 1 секунда
-        }
-
-        // function generateComputerChoice() {
-        //     const choices = ["✊", "✋", "✌️"];
-        //     const randomChoice = choices[Math.floor(Math.random() * choices.length)];
-        //     document.getElementById('computerChoice').innerText = randomChoice;
-        // }
-    </script>
+                <button id="readyButton" onclick="startCountdown()">Готов</button>
             </div>
             <div class="rulesBoard">
                 <div class="headerOfBoard">
@@ -288,8 +151,9 @@
                                 </svg>
                                 
                             <svg width="40" height="40" viewBox="0 0 60 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M46.7999 42.0815H48.0684C53.1792 42.0815 57.0556 37.5591 55.7496 32.8137C61.5503 29.9533 61.3101 22.3126 55.662 19.6461C56.8997 15.0389 53.2095 10.4491 48.0469 10.4491H33.266C34.1364 8.22217 33.8599 5.61559 32.2265 3.52016C29.6723 0.24393 24.8047 -0.474709 21.3101 1.89628L1.57405 15.2857C1.08729 15.616 0.690464 16.0523 0.41666 16.5582C0.142853 17.0642 0 17.6252 0 18.1944V43.0713C0 44.7347 1.20574 46.1779 2.90776 46.5514L18.2544 49.9202C20.0095 50.3052 21.8048 50.4997 23.6058 50.5H39.0234C43.7836 50.5 47.46 46.5354 46.7999 42.0815ZM23.606 45.1425C22.2312 45.1425 20.8557 44.9936 19.5178 44.7L5.6251 41.6503V19.1146L24.5739 6.25789C26.9493 4.64639 29.5867 7.93456 27.2229 9.53847L22.7606 12.5662C21.281 13.5701 22.0238 15.8062 23.8484 15.8062L48.0469 15.8062C51.0521 15.8062 50.9543 19.8878 47.9659 19.8878H30C28.9645 19.8878 28.125 20.6873 28.125 21.6735V22.4387C28.125 23.425 28.9645 24.2244 30 24.2244H52.1484C55.1558 24.2244 55.0558 28.306 52.0674 28.306H30C28.9645 28.306 28.125 29.1054 28.125 30.0917V30.8569C28.125 31.8432 28.9645 32.6426 30 32.6426H48.1494C51.1578 32.6426 51.0568 36.7241 48.0684 36.7241H30C28.9645 36.7241 28.125 37.5235 28.125 38.5098V39.2751C28.125 40.2614 28.9645 41.0608 30 41.0608H38.9425C42.0177 41.0608 41.9472 45.1423 39.0234 45.1423H23.606V45.1425Z" fill="white"/>
-                            </svg>  
+                                <path d="M28.3477 50.5H16.8727C7.57031 50.5 0 42.9399 0 33.637V20.6683C0 17.8498 0.715546 15.0517 2.06953 12.5757L5.74336 5.86298C7.55859 2.55529 11.1211 0.5 14.7773 0.5H20.2816C23.4023 0.5 26.3238 1.89784 28.2973 4.33774L30.109 6.58654L45.082 1.03365C46.0547 0.675481 47.0508 0.50601 48.0352 0.50601C51.5531 0.50601 54.8754 2.67668 56.1691 6.16586C58.2352 11.6538 54.5871 16.125 51.0059 17.4351L50.7544 17.5269L51.9387 17.6154C56.4598 17.9279 60 21.7981 60 26.3774C60 31.149 56.1012 35.0421 51.3375 35.0421C51.133 35.0421 50.9272 35.0348 50.7202 35.02L40.3151 34.2827V35.2611C40.3151 37.9186 39.0788 40.4426 37.028 42.0809C36.8672 46.75 33.0234 50.5 28.3477 50.5ZM28.4648 44.7308C30.1453 44.7308 31.5117 43.405 31.5117 41.7716C31.5117 41.7716 31.507 40.0517 31.507 40.0036C31.507 39.175 31.9877 38.2969 32.7574 38.0337C33.975 37.613 34.7941 36.4976 34.7941 35.262V33.6358C34.7941 31.595 33.1886 31.6647 33.1886 30.0433C33.1886 28.9516 34.0549 28.125 35.0589 28.125C35.1017 28.125 35.1446 28.1265 35.1877 28.1295C35.1877 28.1295 51.3713 29.272 51.4416 29.272C53.1198 29.272 54.4803 27.945 54.4803 26.3284C54.4803 24.7323 53.2264 23.4751 51.6561 23.3669L32.5311 22.0111C32.2177 21.9885 30.7827 21.6617 30.7827 20.0664C30.7827 19.2641 31.2847 18.5544 32.0307 18.2816L49.1203 12.0024C49.9934 11.5697 51.0973 10.7644 51.0973 9.23798C51.0973 7.89904 50.0134 6.27404 48.0539 6.27404C47.6973 6.27404 47.3343 6.33552 46.9798 6.46514L19.5462 16.6851C19.3351 16.7642 19.1191 16.8017 18.9068 16.8017C17.8568 16.8017 17.0318 15.9152 17.0318 14.9868C17.0318 14.2039 17.5085 13.4615 18.2728 13.1791L25.8677 10.3582L24.0701 8.12742C23.0625 6.90625 21.7266 6.26923 20.2852 6.26923H14.7809C13.05 6.26923 11.4668 7.197 10.6477 8.69231L6.97266 15.4038C6.09012 17.0156 5.62266 18.8365 5.62266 20.6695V33.6382C5.62266 39.7572 10.6688 44.7332 16.8727 44.7332H28.4648V44.7308Z" fill="white"/>
+                                </svg>
+                                    
                             <h4>vs</h4>
                             <svg width="40" height="40" viewBox="0 0 60 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.97461 41.9784C5.93555 40.4519 4.6875 37.9639 4.6875 35.2596L4.6875 33.6334C4.6875 33.2106 4.71977 32.7874 4.78341 32.3678C3.67148 30.8846 3.04687 29.0577 3.04687 27.1226L3.04687 25.5C3.04687 25.022 3.09013 24.55 3.17391 24.0877C1.25508 22.6995 0 20.4038 0 17.8077L0 15.8846C0 11.6418 3.35742 8.19231 7.5 8.19231L13.3254 8.19231L16.793 4.23077C18.75 1.85817 21.6328 0.5 24.7148 0.5L33.9691 0.5C37.7309 0.5 41.1937 2.55649 43.0066 5.86659L45.3398 10.1154L57.1875 10.1154C58.7461 10.1154 60 11.4014 60 12.8918C60 14.3822 58.7461 15.8846 57.1875 15.8846L41.9648 15.8846C41.8882 15.7264 41.857 15.5511 41.7728 15.3964L38.1001 8.69207C37.2891 7.19711 35.6953 6.26923 33.9727 6.26923L24.7148 6.26923C23.2723 6.26923 21.9293 6.90397 21.0363 8.01202L19.1953 10.1154H24.375C25.4062 10.1154 26.25 10.9808 26.25 12.0385C26.25 13.0962 25.4114 13.9615 24.375 13.9615L7.5 13.9615C6.46547 13.9615 5.625 14.8255 5.625 15.8846L5.625 17.8077C5.625 18.8654 6.46523 19.7308 7.5 19.7308H9.375C10.4974 19.7308 11.2547 20.6853 11.2547 21.6719C11.2547 22.445 10.7838 23.1514 10.0629 23.4423C9.94219 23.4928 8.67187 24.0938 8.67187 25.5L8.67187 27.1262C8.67187 29.6466 10.9664 29.28 10.9664 31.2452C10.9664 32.228 10.312 32.4351 10.312 33.6346V35.2608C10.312 38.3305 13.6202 37.4567 13.6202 39.9075C13.6202 39.9262 13.62 39.945 13.6193 39.9636L13.5937 41.774C13.5937 43.3005 14.9648 44.7308 16.6406 44.7308H31.875C36.1113 44.7308 39.7641 42.3822 41.6824 38.9615L57.1863 38.9615C58.7461 38.9615 60 40.2476 60 41.738C60 43.2284 58.7461 44.7308 57.1875 44.7308H44.5195C41.3437 48.3486 36.75 50.5 31.875 50.5H16.6406C11.9648 50.5 8.1375 46.75 7.97461 41.9784Z" fill="white"/>
@@ -305,9 +169,196 @@
             
         <class class="footer-c">
             <div class="footer-bottom">
-              <p>© 2025 ВебКНБ Все права защищены.</p>
+
             </div>
         </class>
     </div>
+
+    <script>
+        // Функция для включения/выключения камеры
+        function toggleCamera(button) {
+            const video = document.getElementById('userCamera'); // Получаем элемент video по id
+
+            if (!video) {
+                console.error("Элемент video не найден!");
+                return;
+            }
+
+            if (video.srcObject) {
+                // Если камера уже включена, выключаем её
+                video.srcObject.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+                button.innerText = 'Включить';
+            } else {
+                // Если камера выключена, включаем её
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        video.srcObject = stream; // Передаем поток в элемент video
+                        video.play(); // Воспроизводим видео
+                        button.innerText = 'Выключить';
+                    })
+                    .catch(function(err) {
+                        console.error("Ошибка при доступе к веб-камере: ", err);
+                        alert("Не удалось получить доступ к камере. Убедитесь, что камера подключена и доступ разрешён.");
+                    });
+            }
+        }
+
+        // Функция для захвата изображения с камеры и отправки на сервер
+        function captureAndSendImage() {
+            const video = document.getElementById('userCamera');
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageData = canvas.toDataURL('image/png');
+
+            sendImageToServer(imageData);
+        }
+
+        // Функция для отправки изображения на сервер
+        function sendImageToServer(imageData) {
+            fetch('/upload/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ image: imageData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Получаем жест компьютера из элемента
+                    const computerGesture = data.computer_gesture;
+                    document.getElementById('computerChoice').innerText = computerGesture === "Камень" ? "✊" : 
+                                                    computerGesture === "Бумага" ? "✋" : "✌️";
+                    
+                    // Определяем победителя и отображаем результат
+                    const result = data.result;
+                    document.getElementById('gameResult').innerText = result;
+                    
+                    // Обновляем кнопку только если не в бесконечном режиме
+                    const readyButton = document.getElementById('readyButton');
+                    if (!document.getElementById('infiniteGame').checked) {
+                        readyButton.innerText = 'Готов';
+                    }
+                    
+                    // Обновляем счёт
+                    updateScores();
+                } else {
+                    console.error('Ошибка:', data.message);
+                    document.getElementById('infiniteGame').checked = false;
+                    document.getElementById('readyButton').innerText = 'Готов';
+                    document.getElementById('gameResult').innerText = 'Ошибка: ' + data.message;
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке:', error);
+                document.getElementById('infiniteGame').checked = false;
+                document.getElementById('readyButton').innerText = 'Готов';
+                document.getElementById('gameResult').innerText = 'Ошибка подключения';
+            });
+        }
+
+        async function updateScores() {
+            fetch('/scores/', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    
+                    document.getElementById('wins').innerText = data.wins;
+                    document.getElementById('loses').innerText = data.loses;
+
+                } else {
+                    console.error('Ошибка:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке запроса:', error);
+            });
+        }
+
+        // Функция для получения CSRF токена
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Пример использования в вашей функции startCountdown
+        let infiniteGameTimeout = null;
+
+        function startCountdown() {
+            const button = document.getElementById('readyButton');
+            const infiniteGame = document.getElementById('infiniteGame').checked;
+            
+            if (button.disabled) return;
+            
+            let countdown = 3;
+            button.disabled = true;
+            
+            // Очищаем предыдущий результат при начале нового раунда
+            document.getElementById('gameResult').innerText = 'Результат игры';
+            
+            const interval = setInterval(() => {
+                button.innerText = countdown;
+                countdown--;
+                
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    button.disabled = false;
+                    
+                    captureAndSendImage();
+                    
+                    if (infiniteGame) {
+                        infiniteGameTimeout = setTimeout(() => {
+                            if (document.getElementById('infiniteGame').checked) {
+                                startCountdown();
+                            }
+                        }, 2000);
+                    }
+                }
+            }, 1000);
+        }
+
+        // Добавьте обработчик изменения состояния чекбокса
+        document.getElementById('infiniteGame').addEventListener('change', function(e) {
+            if (!e.target.checked && infiniteGameTimeout) {
+                clearTimeout(infiniteGameTimeout);
+                document.getElementById('readyButton').innerText = 'Готов';
+            } else if (e.target.checked) {
+                startCountdown();
+            }
+        });
+
+        // Обновите функцию closeCamera, чтобы останавливать бесконечную игру
+        function closeCamera() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+            document.getElementById('cameraModal').style.display = 'none';
+            document.getElementById('infiniteGame').checked = false;
+            document.getElementById('gameResult').innerText = 'Результат игры';
+            if (infiniteGameTimeout) {
+                clearTimeout(infiniteGameTimeout);
+            }
+        }
+    </script>
 </body>
 </html>

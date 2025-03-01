@@ -50,7 +50,7 @@
                     </a>
                     <div>
                         <a href="{% url 'profile' username=request.user.username %}"><p>{{ request.user.username }}</p></a>
-                        <a href="{% url 'logout' %}" style="text-decoration: underline;">Logout</a>
+                        <a href="{% url 'logout' %}" style="text-decoration: underline;">Выход</a>
                     </div>
                 </div>
                 {% else %}

@@ -10,6 +10,70 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <style>
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: #2c2c2c;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 90%;
+        max-height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #camera {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .cropper-container {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+    }
+
+    #cropperImage {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .modal button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .modal button:hover {
+        background-color: #45a049;
+    }
+
+    .cropper-controls {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+    </style>
 </head>
 <body>
     <div class="page">
@@ -42,7 +106,7 @@
                     </a>
                     <div>
                         <a href="{% url 'profile' username=request.user.username %}"><p>{{ request.user.username }}</p></a>
-                        <a href="{% url 'logout' %}" style="text-decoration: underline;">Logout</a>
+                        <a href="{% url 'logout' %}" style="text-decoration: underline;">Выход</a>
                     </div>
                 </div>
                 {% else %}
@@ -70,8 +134,10 @@
                     <div class="avatar-upload-options">
                         <form id="avatarForm" enctype="multipart/form-data">
                             <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                            {% if user.username == request.user.username %}
                             <button type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
                             <button type="button" onclick="startCamera()">Сделать фото</button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
@@ -104,20 +170,21 @@
             </div>
         </div>
 
-        <div id="cameraModal" class="modal" style="display: none;">
+        <div id="cameraModal" class="modal">
             <div class="modal-content">
                 <video id="camera" autoplay></video>
-                <div id="countdown"></div>
-                <button onclick="takePhoto()">Сделать фото</button>
-                <button onclick="closeCamera()">Отмена</button>
+                <div id="countdown" style="font-size: 48px; color: white; margin: 10px 0;"></div>
+                <div>
+                    <button onclick="takePhoto()">Сделать фото</button>
+                    <button onclick="closeCamera()">Отмена</button>
+                </div>
             </div>
         </div>
 
-        <div id="cropperModal" class="modal" style="display: none;">
+        <div id="cropperModal" class="modal">
             <div class="modal-content">
                 <div class="cropper-container">
                     <img id="cropperImage" src="" alt="Image to crop">
-                    <div class="circular-preview"></div>
                 </div>
                 <div class="cropper-controls">
                     <button onclick="saveCroppedImage()">Сохранить</button>
@@ -133,13 +200,18 @@
         function startCamera() {
             const modal = document.getElementById('cameraModal');
             const video = document.getElementById('camera');
-            modal.style.display = 'block';
+            modal.style.display = 'flex';
             
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(stream => {
-                    videoStream = stream;
-                    video.srcObject = stream;
-                });
+            navigator.mediaDevices.getUserMedia({ 
+                video: {
+                    width: { ideal: 1920 },
+                    height: { ideal: 1080 }
+                }
+            })
+            .then(stream => {
+                videoStream = stream;
+                video.srcObject = stream;
+            });
         }
 
         function takePhoto() {
@@ -212,7 +284,7 @@
                     const cropperImage = document.getElementById('cropperImage');
                     
                     cropperImage.src = e.target.result;
-                    cropperModal.style.display = 'block';
+                    cropperModal.style.display = 'flex';
                     
                     if (cropper) {
                         cropper.destroy();

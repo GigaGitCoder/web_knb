@@ -18,40 +18,6 @@ from django.db.models import F
 import time
 from django.conf import settings
 
-
-# def sign_in_page(request):
-#     if request.method == 'POST':
-#         form = CustomAuthenticationForm(data=request.POST)
-#         if form.is_valid():
-#             cleaned_data = form.cleaned_data
-#             login = cleaned_data.get('username')    
-#             password = cleaned_data.get('password')
-#         else:
-#             print("Форма не валидна:")
-#             print(form.non_field_errors())
-#             print(form.errors, "fsdfds")
-        
-#         if form.is_valid():
-#             if not login or not password:
-#                 return render(request, 'signIn.html', {'error': 'Недостаточно данных', 'form': form})
-
-#             user = authenticate(request, username=login, password=password)
-
-#             # Проверяем, существует ли пользователь с таким логином и паролем
-#             if user:
-#                 response_data = {
-#                     'login': login,
-#                     'password': password
-#                 }
-#                 request.session['data'] = response_data
-#                 return redirect('..')
-
-#             return render(request, 'signIn.html', {'error': 'Неверный логин или пароль', 'form': form})
-
-#     form = CustomAuthenticationForm()
-
-#     return render(request, 'signIn.html', {'form': form})
-
 def sign_in_page(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
@@ -105,7 +71,7 @@ def index_page(request):
 def game_page(request):
     if request.user.is_authenticated:
         # Получаем топ-10 игроков по количеству побед
-        top_players = User.objects.order_by('-wins')[:10]
+        top_players = User.objects.order_by('-wins')[:11]
         return render(request, 'game.html', {'leaders': top_players})
     else:
         return redirect('../signin')
@@ -115,17 +81,15 @@ def logout_and_redirect(request):
     return redirect('../signin')
 
 def profile_page(request, username):
-    if request.user.is_authenticated:
-        user = User.objects.filter(username=username).first()
-        total_games = user.games_total
-        win_rate = (user.wins / total_games * 100) if total_games > 0 else 0
-        context = {
-            'user': user,
-            'win_rate': round(win_rate, 1)
-        }
-        return render(request, 'profile.html', context)
-    # else:
-    #     return redirect('../signin')
+    user = User.objects.filter(username=username).first()
+    total_games = user.games_total
+    win_rate = (user.wins / total_games * 100) if total_games > 0 else 0
+    context = {
+        'user': user,
+        'win_rate': round(win_rate, 1)
+    }
+    return render(request, 'profile.html', context)
+
 
 @csrf_exempt
 def upload_image(request):

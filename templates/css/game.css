@@ -137,12 +137,12 @@ body{
 }
 
 .leadersBoard .mainPartOfBoard li {
-    flex: 1; 
+    /* flex: 1;  */
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
     background-color: #071422;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 0px 20px;
     margin-bottom: 10px; 
 }
@@ -155,7 +155,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: auto;
+    height: 45px;
     background-color: #071422;
     border-radius: 15px;
     padding: 0px 20px;
