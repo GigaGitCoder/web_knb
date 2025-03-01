@@ -36,12 +36,13 @@ git clone https://github.com/GigaGitCoder/web_knb.git
 cd web_knb
 ```
 
-2. Создайте виртуальное окружение и активируйте его:
+2. (Опционально) Создайте и активируйте виртуальное окружение:
 ```bash
 python -m venv venv
 source venv\Scripts\activate # Linux/MacOS
 venv\Scripts\activate # Windows
 ```
+Этот шаг рекомендуется для изоляции зависимостей проекта, но не является обязательным.
 
 3. Установите зависимости:
 ```bash
