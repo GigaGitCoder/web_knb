@@ -51,7 +51,7 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-4. ⚠️ ВАЖНО ДЛЯ ОРГАНИЗАТОРОВ ХАКАТОНА:
+4. ⚠️ ВАЖНО ДЛЯ ОРГАНИЗАТОРОВ ХАКАТОНА:<br>
    Создайте файл `.env` в папке `web_knb` со следующим содержимым:
 ```
 SECRET_KEY = 'django-insecure-a5!l+qxdu4k)keesvrm!5=ro0glbduk3#q5hqmk)3i_@7x7a2w'
@@ -129,7 +129,7 @@ python manage.py runserver
     </td>
     <td align="center">
       <img src="https://github.com/Xqyat.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>-</b><br />
+      <b>Роман Колесников</b><br />
       GitHub: <a href="https://github.com/Xqyat">@Xqyat</a><br />
       Telegram: <a href="https://t.me/Forliot">@Forliot</a>
     </td>
