@@ -157,7 +157,7 @@ python manage.py runserver
     </td>
     <td align="center">
       <img src="https://github.com/Malanhei.png" width="100" height="100" style="border-radius: 50%;"><br />
-      <b>-</b><br />
+      <b>Цызов Владимир</b><br />
       GitHub: <a href="https://github.com/Malanhei">@Malanhei</a><br />
       Telegram: <a href="https://t.me/malanhei">@malanhei</a>
     </td>
