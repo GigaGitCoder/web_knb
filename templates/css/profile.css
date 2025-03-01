@@ -178,13 +178,14 @@
 }
 
 .avatar-upload-options button {
-    background: #142B42;
+    background: #0f2133;
     color: white;
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    margin-bottom: 5px;
 }
 
 .avatar-upload-options button:hover {
@@ -274,6 +275,3 @@
     overflow: auto;
 }
 
-.load-photo {
-    background-color: w;
-}

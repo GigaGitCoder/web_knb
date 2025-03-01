@@ -112,8 +112,8 @@
                 {% else %}
                 <div class="div-reg-log">
                     <ul class="DRL-menu">
-                       <li><a href="signup"><b>Регистрация</b></a></li> 
-                       <li><a href="signin"><b>Вход</b></a></li>
+                       <li><a href="{% url 'signup' %}"><b>Регистрация</b></a></li> 
+                       <li><a href="{% url 'signin' %}"><b>Вход</b></a></li>
                     </ul>
                     </div>
                 {% endif %}
@@ -135,8 +135,8 @@
                         <form id="avatarForm" enctype="multipart/form-data">
                             <input type="file" id="avatarInput" accept="image/*" style="display: none;">
                             {% if user.username == request.user.username %}
-                            <button class="load-photo" type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
-                            <button class="take-photo" type="button" onclick="startCamera()">Сделать фото</button>
+                            <button type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
+                            <button type="button" onclick="startCamera()">Сделать фото</button>
                             {% endif %}
                         </form>
                     </div>
