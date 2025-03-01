@@ -68,7 +68,6 @@ def index_page(request):
 
 def game_page(request):
     if request.user.is_authenticated:
-        # Получаем топ-10 игроков по количеству побед
         top_players = User.objects.order_by('-wins')[:11]
         return render(request, 'game.html', {'leaders': top_players})
     else:

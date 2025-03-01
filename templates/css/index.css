@@ -2,7 +2,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* Основные стили для верхнего бара */
+
 .header{
     height: 125px;
     background: #142B42;
@@ -18,13 +18,13 @@
     margin-right: 100px;
 }
 
-/* Стили для логотипа и названия */
+
 .logoAndName {
     display: flex;
     align-items: center;
 }
 
-/* Стили для навигационных ссылок */
+
 .nav-links {
     display: flex;
     gap: 20px;
@@ -85,11 +85,11 @@
     text-transform: uppercase;
 }
 
-/* Стили для профиля пользователя */
+
 .userProfile {
     display: flex;
     align-items: center;
-    gap: 10px; /* Расстояние между элементами */
+    gap: 10px; 
     margin-right: 50px;
 }
 
@@ -195,7 +195,7 @@
     opacity: 0.5;
 }
 
-/* Основной контент */
+
 .main {
     padding: 2rem 100px;
     text-align: center;
@@ -228,7 +228,7 @@
     color: #E5E7EB;
 }
 
-/* Секция с функциями */
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -266,7 +266,7 @@
     line-height: 1.5;
 }
 
-/* Секция "Как играть" */
+
 .how-to-play {
     padding: 4rem 2rem;
     text-align: center;
@@ -318,7 +318,7 @@
     line-height: 1.5;
 }
 
-/* Кнопка играть */
+
 .cta-section {
     text-align: center;
     margin: 3rem 0;
@@ -340,7 +340,7 @@
     background: #2563EB;
 }
 
-/* Адаптивность */
+
 @media (max-width: 1024px) {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);

@@ -18,13 +18,15 @@
 
 ## 🛠 Технологии
 
-- Python 3.8+
-- Django 5.1.6 
-- OpenCV
-- MediaPipe
-- HTML5/CSS3
-- JavaScript
-- TailwindCSS
+- <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="13" height="13"/> Python 3.8+
+- <img src="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png" width="13" height="13"/> Django 5.1.6 
+- <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="13" height="13"/> OpenCV
+- <img src="https://avatars.githubusercontent.com/u/45142806" width="13" height="13"/> MediaPipe
+- <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="13" height="13"/> HTML5
+- <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" width="13" height="13"/> CSS3
+- <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" width="13" height="13"/> JavaScript
+- <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="13" height="13"/> TailwindCSS
+- <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width="13" height="13"/> Figma - [Концепт дизайна](https://www.figma.com/design/lCKHElk9uNNpPP2NIwRQRY/RPS?node-id=2-16&t=ZbWSBUOP4rnJ4vNp-1)
 
 ## 🚀 Установка и запуск
 
@@ -132,31 +134,31 @@ python manage.py runserver
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/GigaGitCoder.png" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="https://github.com/GigaGitCoder.png" width="100" height="100" style="border-radius: 50%" alt="avatar"><br />
       <b>Егор Холкин</b><br />
       GitHub: <a href="https://github.com/GigaGitCoder">@GigaGitCoder</a><br />
       Telegram: <a href="https://t.me/IgorXmel">@IgorXmel</a>
     </td>
     <td align="center">
-      <img src="https://github.com/Anton2442.png" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="https://github.com/Anton2442.png" width="100" height="100" style="border-radius: 50%" alt="avatar"><br />
       <b>Антон Михайличенко</b><br />
       GitHub: <a href="https://github.com/Anton2442">@Anton2442</a><br />
       Telegram: <a href="https://t.me/Kish242">@Kish242</a>
     </td>
     <td align="center">
-      <img src="https://github.com/dencraz.png" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="https://github.com/dencraz.png" width="100" height="100" style="border-radius: 50%" alt="avatar"><br />
       <b>Даниил Сапронов</b><br />
       GitHub: <a href="https://github.com/dencraz">@dencraz</a><br />
       Telegram: <a href="https://t.me/dencraz">@dencraz</a>
     </td>
     <td align="center">
-      <img src="https://github.com/Xqyat.png" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="https://github.com/Xqyat.png" width="100" height="100" style="border-radius: 50%" alt="avatar"><br />
       <b>Роман Колесников</b><br />
       GitHub: <a href="https://github.com/Xqyat">@Xqyat</a><br />
       Telegram: <a href="https://t.me/Forliot">@Forliot</a>
     </td>
     <td align="center">
-      <img src="https://sun2-18.userapi.com/s/v1/ig2/QOHM-ftoEZrQ7RfJuFUrKSX-xDVxbAP48ON55c7lWRZQ-5tMwn_j6DT18RVM-ct6oDko6IQG_nAe4BHedSZeLGXN.jpg?quality=95&crop=311,5,476,476&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=mBJJIJHalMwlaWdHGeWQx12WYbz1vqaL3H3KEiae26o&cs=200x200" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="https://sun2-18.userapi.com/s/v1/ig2/QOHM-ftoEZrQ7RfJuFUrKSX-xDVxbAP48ON55c7lWRZQ-5tMwn_j6DT18RVM-ct6oDko6IQG_nAe4BHedSZeLGXN.jpg?quality=95&crop=311,5,476,476&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=mBJJIJHalMwlaWdHGeWQx12WYbz1vqaL3H3KEiae26o&cs=200x200" width="100" height="100" style="border-radius: 50%" alt="avatar"><br />
       <b>Цызов Владимир</b><br />
       GitHub: <a href="https://github.com/Malanhei">@Malanhei</a><br />
       Telegram: <a href="https://t.me/malanhei">@malanhei</a>
