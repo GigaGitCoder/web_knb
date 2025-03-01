@@ -167,3 +167,4 @@ python manage.py runserver
 ## 📄 Лицензия
 
 MIT License - подробности в файле [LICENSE](LICENSE)
+  
