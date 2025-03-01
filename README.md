@@ -39,8 +39,8 @@ cd web_knb
 2. Создайте виртуальное окружение и активируйте его:
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/MacOS
-venv\Scripts\activate     # Windows
+source venv\Scripts\activate # Linux/MacOS
+venv\Scripts\activate # Windows
 ```
 
 3. Установите зависимости:
