@@ -95,7 +95,7 @@ python manage.py runserver
 <table>
 <tr>
 <td width="400px">
-<img src="media/game-system.gif" width="400px">
+<img src="media/game-system-github.gif" width="400px">
 </td>
 <td>
 <ul>
