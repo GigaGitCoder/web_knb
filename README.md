@@ -156,7 +156,7 @@ python manage.py runserver
       Telegram: <a href="https://t.me/Forliot">@Forliot</a>
     </td>
     <td align="center">
-      <img src="[https://github.com/Malanhei.png](https://sun2-18.userapi.com/s/v1/ig2/QOHM-ftoEZrQ7RfJuFUrKSX-xDVxbAP48ON55c7lWRZQ-5tMwn_j6DT18RVM-ct6oDko6IQG_nAe4BHedSZeLGXN.jpg?quality=95&crop=311,5,476,476&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=mBJJIJHalMwlaWdHGeWQx12WYbz1vqaL3H3KEiae26o&cs=200x200)" width="100" height="100" style="border-radius: 50%;"><br />
+      <img src="[https://github.com/Malanhei.png]" width="100" height="100" style="border-radius: 50%;"><br />
       <b>Цызов Владимир</b><br />
       GitHub: <a href="https://github.com/Malanhei">@Malanhei</a><br />
       Telegram: <a href="https://t.me/malanhei">@malanhei</a>
