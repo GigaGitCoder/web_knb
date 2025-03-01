@@ -5,10 +5,10 @@
 <h1>ВебКНБ (Web Rock Paper Scissors)</h1>
   
 ![Contributors](https://img.shields.io/github/contributors/GigaGitCoder/web_knb)
-![Forks](https://img.shields.io/github/forks/GigaGitCoder/web_knb)
-![Stars](https://img.shields.io/github/stars/GigaGitCoder/web_knb)
 ![Issues](https://img.shields.io/github/issues/GigaGitCoder/web_knb)
 ![MIT License](https://img.shields.io/github/license/GigaGitCoder/web_knb)
+![Forks](https://img.shields.io/github/forks/GigaGitCoder/web_knb)
+![Stars](https://img.shields.io/github/stars/GigaGitCoder/web_knb)
 
 </div>
 
