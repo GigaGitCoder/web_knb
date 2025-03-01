@@ -21,7 +21,7 @@
 - <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="13" height="13"/> Python 3.8+
 - <img src="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png" width="13" height="13"/> Django 5.1.6 
 - <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="13" height="13"/> OpenCV
-- <img src="https://avatars.githubusercontent.com/u/45142806" width="13" height="13"/> MediaPipe
+- <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/events/mediapipe_icon.png" width="13" height="13"/> MediaPipe
 - <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" width="13" height="13"/> HTML5
 - <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" width="13" height="13"/> CSS3
 - <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" width="13" height="13"/> JavaScript
