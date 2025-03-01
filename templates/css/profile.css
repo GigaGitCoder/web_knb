@@ -272,4 +272,8 @@
     max-width: 90%;
     max-height: 90vh;
     overflow: auto;
-} 
+}
+
+.load-photo {
+    background-color: w;
+}

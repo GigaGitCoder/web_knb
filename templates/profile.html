@@ -99,7 +99,7 @@
                 <div class="if-logged">
                     <a href="{% url 'profile' username=request.user.username %}">
                         {% if user.profile_picture %}
-                            <img class="", height="80px", width="80px", style="border-radius: 50%;", src="{{ user.profile_picture.url }}" alt="Profile Avatar">
+                            <img class="", height="80px", width="80px", style="border-radius: 50%;", src="{{ request.user.profile_picture.url }}" alt="Profile Avatar">
                         {% else %}
                             <img class="", height="80px", width="80px", src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle">
                         {% endif %}
@@ -135,8 +135,8 @@
                         <form id="avatarForm" enctype="multipart/form-data">
                             <input type="file" id="avatarInput" accept="image/*" style="display: none;">
                             {% if user.username == request.user.username %}
-                            <button type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
-                            <button type="button" onclick="startCamera()">Сделать фото</button>
+                            <button class="load-photo" type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
+                            <button class="take-photo" type="button" onclick="startCamera()">Сделать фото</button>
                             {% endif %}
                         </form>
                     </div>
