@@ -75,43 +75,57 @@ python manage.py runserver
 ## 🎮 Функционал
 
 ### Система аккаунтов
-<div style="display: flex; align-items: stretch; gap: 20px;">
-<img src="media/log-reg-system.gif" width="400px" style="object-fit: cover;"></img>
-<ul style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 0; padding-left: 20px; font-size: 16px;">
+<table>
+<tr>
+<td width="400px">
+<img src="media/log-reg-system.gif" width="400px">
+</td>
+<td>
+<ul>
   <li>Регистрация новых пользователей с уникальным логином и email</li>
   <li>Безопасное хранение паролей с использованием хеширования</li>
   <li>Авторизация существующих пользователей</li>
   <li>Персональная статистика игр для каждого пользователя</li>
 </ul>
-</div>
-
-<br><br>
+</td>
+</tr>
+</table>
 
 ### Игровой процесс
-<div style="display: flex; align-items: stretch; gap: 20px;">
-<img src="media/game-system.gif" width="400px" style="object-fit: cover;"></img>
-<ul style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 0; padding-left: 20px; font-size: 16px;">
+<table>
+<tr>
+<td width="400px">
+<img src="media/game-system.gif" width="400px">
+</td>
+<td>
+<ul>
   <li>Распознавание жестов в реальном времени через веб-камеру</li>
   <li>Автоматическое определение жеста игрока (камень/ножницы/бумага)</li>
   <li>Случайный выбор жеста компьютером</li>
   <li>Мгновенное определение победителя</li>
   <li>Подсчет очков в текущей сессии</li>
 </ul>
-</div>
-
-<br><br>
+</td>
+</tr>
+</table>
 
 ### Таблица лидеров
-<div style="display: flex; align-items: stretch; gap: 20px;">
-<img src="media/leader-board-system.gif" width="400px" style="object-fit: cover;"></img>
-<ul style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 0; padding-left: 20px; font-size: 16px;">
+<table>
+<tr>
+<td width="400px">
+<img src="media/leader-board-system.gif" width="400px">
+</td>
+<td>
+<ul>
   <li>Отслеживание статистики всех игроков</li>
   <li>Рейтинг по количеству побед</li>
   <li>Процент выигрышных партий</li>
   <li>История последних игр</li>
   <li>Еженедельное и ежемесячное обновление рейтинга</li>
 </ul>
-</div>
+</td>
+</tr>
+</table>
 
 ## 👥 Команда разработчиков
 
