@@ -4,18 +4,11 @@
 <div align="center">
 <h1>ВебКНБ (Web Rock Paper Scissors)</h1>
   
-[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url]
-
-[contributors-shield]: https://img.shields.io/github/contributors/GigaGitCoder/web_knb.svg?style=for-the-badge
-[contributors-url]: https://github.com/GigaGitCoder/web_knb/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/GigaGitCoder/web_knb.svg?style=for-the-badge
-[forks-url]: https://github.com/GigaGitCoder/web_knb/network/members
-[stars-shield]: https://img.shields.io/github/stars/GigaGitCoder/web_knb.svg?style=for-the-badge
-[stars-url]: https://github.com/GigaGitCoder/web_knb/stargazers
-[issues-shield]: https://img.shields.io/github/issues/GigaGitCoder/web_knb.svg?style=for-the-badge
-[issues-url]: https://github.com/GigaGitCoder/web_knb/issues
-[license-shield]: https://img.shields.io/github/license/GigaGitCoder/web_knb.svg?style=for-the-badge
-[license-url]: https://github.com/GigaGitCoder/web_knb/blob/master/LICENSE
+![Contributors](https://img.shields.io/github/contributors/GigaGitCoder/web_knb)
+![Forks](https://img.shields.io/github/forks/GigaGitCoder/web_knb)
+![Stars](https://img.shields.io/github/stars/GigaGitCoder/web_knb)
+![Issues](https://img.shields.io/github/issues/GigaGitCoder/web_knb)
+![MIT License](https://img.shields.io/github/license/GigaGitCoder/web_knb)
 
 </div>
 
