@@ -8,6 +8,8 @@
     <link rel="icon" href="{% static 'images/logo.svg' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 </head>
 <body>
     <div class="page">
@@ -26,16 +28,20 @@
         
                 <!-- Навигационные ссылки -->
                 <nav class="nav-links">
-                    <a href="game"><b>Играть</b></a>
+                    <a href="{% url 'game' %}"><b>Играть</b></a>
                 </nav>
                 
                 {% if request.user.is_authenticated %} 
                 <div class="if-logged">
-                    <a href="{% url 'profile' %}">
-                        <img width="80" height="80" src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle"/>
+                    <a href="{% url 'profile' username=request.user.username %}">
+                        {% if user.profile_picture %}
+                            <img class="", height="80px", width="80px", style="border-radius: 50%;", src="{{ user.profile_picture.url }}" alt="Profile Avatar">
+                        {% else %}
+                            <img class="", height="80px", width="80px", src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle">
+                        {% endif %}
                     </a>
                     <div>
-                        <a href="{% url 'profile' %}"><p>{{ request.user.username }}</p></a>
+                        <a href="{% url 'profile' username=request.user.username %}"><p>{{ request.user.username }}</p></a>
                         <a href="{% url 'logout' %}" style="text-decoration: underline;">Logout</a>
                     </div>
                 </div>
@@ -54,7 +60,21 @@
         <!-- Main Content -->
         <div class="profile-container">
             <div class="profile-header">
-                <img class="profile-avatar" src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="Profile Avatar">
+                <div class="avatar-container">
+                    {% if user.profile_picture %}
+                        <img class="profile-avatar" src="{{ user.profile_picture.url }}" alt="Profile Avatar">
+                    {% else %}
+                        <img class="profile-avatar" src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle">
+                    {% endif %}
+                    
+                    <div class="avatar-upload-options">
+                        <form id="avatarForm" enctype="multipart/form-data">
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                            <button type="button" onclick="document.getElementById('avatarInput').click()">Загрузить фото</button>
+                            <button type="button" onclick="startCamera()">Сделать фото</button>
+                        </form>
+                    </div>
+                </div>
                 <h1>{{ user.username }}</h1>
                 <p class="profile-email">{{ user.email }}</p>
             </div>
@@ -72,7 +92,7 @@
                             <span class="stat-label">Поражения</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-value">{{ total_games }}</span>
+                            <span class="stat-value">{{ user.games_total }}</span>
                             <span class="stat-label">Всего игр</span>
                         </div>
                         <div class="stat-item">
@@ -83,6 +103,194 @@
                 </div>
             </div>
         </div>
+
+        <div id="cameraModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <video id="camera" autoplay></video>
+                <div id="countdown"></div>
+                <button onclick="takePhoto()">Сделать фото</button>
+                <button onclick="closeCamera()">Отмена</button>
+            </div>
+        </div>
+
+        <div id="cropperModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="cropper-container">
+                    <img id="cropperImage" src="" alt="Image to crop">
+                    <div class="circular-preview"></div>
+                </div>
+                <div class="cropper-controls">
+                    <button onclick="saveCroppedImage()">Сохранить</button>
+                    <button onclick="closeCropper()">Отмена</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        let videoStream;
+        let cropper = null;
+
+        function startCamera() {
+            const modal = document.getElementById('cameraModal');
+            const video = document.getElementById('camera');
+            modal.style.display = 'block';
+            
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    videoStream = stream;
+                    video.srcObject = stream;
+                });
+        }
+
+        function takePhoto() {
+            const countdown = document.getElementById('countdown');
+            let count = 3;
+            
+            const countdownInterval = setInterval(() => {
+                countdown.textContent = count;
+                count--;
+                
+                if (count < 0) {
+                    clearInterval(countdownInterval);
+                    countdown.textContent = '';
+                    
+                    const video = document.getElementById('camera');
+                    const canvas = document.createElement('canvas');
+                    const size = Math.min(video.videoWidth, video.videoHeight);
+                    
+                    canvas.width = size;
+                    canvas.height = size;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 
+                        (video.videoWidth - size) / 2, 
+                        (video.videoHeight - size) / 2, 
+                        size, size,
+                        0, 0, size, size
+                    );
+                    
+                    const imageData = canvas.toDataURL('image/png');
+                    
+                    fetch('/upload-avatar/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({
+                            image: imageData
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            location.reload();
+                        } else {
+                            console.error('Upload failed:', data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                    
+                    closeCamera();
+                }
+            }, 1000);
+        }
+
+        function closeCamera() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+            document.getElementById('cameraModal').style.display = 'none';
+        }
+
+        document.getElementById('avatarInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const cropperModal = document.getElementById('cropperModal');
+                    const cropperImage = document.getElementById('cropperImage');
+                    
+                    cropperImage.src = e.target.result;
+                    cropperModal.style.display = 'block';
+                    
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    
+                    cropper = new Cropper(cropperImage, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        guides: true,
+                        center: true,
+                        highlight: false,
+                        background: false,
+                        autoCropArea: 1,
+                        cropBoxResizable: false,
+                        dragMode: 'move'
+                    });
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function saveCroppedImage() {
+            if (cropper) {
+                const canvas = cropper.getCroppedCanvas({
+                    width: 300,
+                    height: 300
+                });
+                
+                canvas.toBlob(function(blob) {
+                    const formData = new FormData();
+                    formData.append('profile_picture', blob, 'cropped_avatar.png');
+                    
+                    fetch('/upload-avatar/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            location.reload();
+                        } else {
+                            console.error('Upload failed:', data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+                
+                closeCropper();
+            }
+        }
+
+        function closeCropper() {
+            const cropperModal = document.getElementById('cropperModal');
+            cropperModal.style.display = 'none';
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        </script>
 
         <!-- Footer -->
         <footer class="footer">

@@ -51,10 +51,12 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-4. Создайте файл .env в корневой директории проекта:
+4. ⚠️ ВАЖНО ДЛЯ ОРГАНИЗАТОРОВ ХАКАТОНА:
+   Создайте файл `.env` в папке `web_knb` со следующим содержимым:
 ```
-SECRET_KEY=your-secret-key-here
+SECRET_KEY = 'django-insecure-a5!l+qxdu4k)keesvrm!5=ro0glbduk3#q5hqmk)3i_@7x7a2w'
 ```
+   Примечание: Данный ключ оставлен в документации намеренно для упрощения процесса оценки проекта.
 
 5. Примените миграции:
 ```bash

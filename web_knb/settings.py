@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 from os import getenv
+import os
 
 load_dotenv()
 
@@ -124,6 +125,13 @@ STATIC_URL = '/templates/'
 STATICFILES_DIRS = [
     BASE_DIR / 'templates',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Создайте директорию media, если её нет
+if not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
 
 
 # Default primary key field type

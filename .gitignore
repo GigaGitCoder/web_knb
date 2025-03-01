@@ -1,0 +1,17 @@
+# Игнорировать папку с аватарками пользователей
+profile_pics/
+
+# Игнорировать базу данных SQLite
+db.sqlite3
+
+# Игнорировать файл с переменными окружения
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+local_settings.py

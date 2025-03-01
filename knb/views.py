@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from .models import User  # Импортируем модель User
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm, ProfilePictureForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.hashers import make_password, check_password
 from random import choice
@@ -15,6 +15,8 @@ import cv2
 import numpy as np
 from .gesture_detector import GestureDetector
 from django.db.models import F
+import time
+from django.conf import settings
 
 
 # def sign_in_page(request):
@@ -67,7 +69,12 @@ def sign_in_page(request):
             else:
                 return render(request, 'signIn.html', {'error': 'Неверный логин или пароль', 'form': form})
         else:
-            return render(request, 'signIn.html', {'form': form})
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            if password and login:
+                return render(request, 'signIn.html', {'error': 'Неверный логин или пароль', 'form': form})
+            else:
+                return render(request, 'signIn.html', {'form': form})
 
     form = CustomAuthenticationForm()
     return render(request, 'signIn.html', {'form': form})
@@ -107,18 +114,18 @@ def logout_and_redirect(request):
     logout(request)
     return redirect('../signin')
 
-def profile_page(request):
+def profile_page(request, username):
     if request.user.is_authenticated:
-        total_games = request.user.wins + request.user.loses
-        win_rate = (request.user.wins / total_games * 100) if total_games > 0 else 0
+        user = User.objects.filter(username=username).first()
+        total_games = user.games_total
+        win_rate = (user.wins / total_games * 100) if total_games > 0 else 0
         context = {
-            'user': request.user,
-            'total_games': total_games,
+            'user': user,
             'win_rate': round(win_rate, 1)
         }
         return render(request, 'profile.html', context)
-    else:
-        return redirect('../signin')
+    # else:
+    #     return redirect('../signin')
 
 @csrf_exempt
 def upload_image(request):
@@ -145,7 +152,7 @@ def upload_image(request):
             user_gesture = detector.detect_gesture(image)
             computer_gesture = choice(("Камень", "Бумага", "Ножницы"))
 
-            user = User.objects.filter(username=request.user.username).first()
+            user = User.objects.filter(username=request.user.username)
 
             if user_gesture != "Рука не обнаружена":
                 if user_gesture == computer_gesture:
@@ -201,3 +208,49 @@ def send_scores(request):
                 'status': 'error', 
                 'message': str(e)
             }, status=400)
+
+@csrf_exempt
+def upload_avatar(request):
+    if request.method == 'POST':
+        try:
+            # Сохраняем путь к старой аватарке
+            old_avatar = request.user.profile_picture
+            
+            if request.FILES:  # Если загружается файл
+                form = ProfilePictureForm(request.POST, request.FILES, instance=request.user)
+                if form.is_valid():
+                    # Если старая аватарка существует и это не дефолтная
+                    if old_avatar and old_avatar.name != 'user-male-circle.png':
+                        # Получаем полный путь к файлу
+                        old_avatar_path = os.path.join(settings.MEDIA_ROOT, old_avatar.name)
+                        # Удаляем файл, если он существует
+                        if os.path.exists(old_avatar_path):
+                            os.remove(old_avatar_path)
+                    
+                    form.save()
+                    return JsonResponse({'status': 'success'})
+            else:  # Если загружается фото с камеры
+                data = json.loads(request.body)
+                image_data = data.get('image')
+                if image_data:
+                    format, imgstr = image_data.split(';base64,')
+                    ext = format.split('/')[-1]
+                    filename = f'avatar_{request.user.username}_{int(time.time())}.{ext}'
+                    
+                    # Удаляем старую аватарку
+                    if old_avatar and old_avatar.name != 'user-male-circle.png':
+                        old_avatar_path = os.path.join(settings.MEDIA_ROOT, old_avatar.name)
+                        if os.path.exists(old_avatar_path):
+                            os.remove(old_avatar_path)
+                    
+                    image_data = ContentFile(base64.b64decode(imgstr), name=filename)
+                    request.user.profile_picture = image_data
+                    request.user.save()
+                    
+                    return JsonResponse({'status': 'success'})
+                    
+            return JsonResponse({'status': 'error', 'message': 'No image data provided'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+            
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})

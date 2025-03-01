@@ -26,7 +26,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, password, **extra_fields)
 
 class User(AbstractBaseUser):
-    # profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True, default='user-male-circle.png')
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=15, unique=True)
     wins = models.IntegerField(default=0)

@@ -38,8 +38,17 @@
                     <ul>
                         {% for player in leaders %}
                         <li class="place">
-                            <p class="user-place">{{ forloop.counter }}.) {{ player.username }}</p>
-                            <p class="user-scores">{{ player.wins }} побед</p>
+                            <a href="{% url 'profile' username=player.username %}">
+                                <div class="user-info">
+                                    {% if player.profile_picture %}
+                                        <img class="user-avatar" src="{{ player.profile_picture.url }}" alt="{{ player.username }}">
+                                    {% else %}
+                                        <img class="user-avatar" src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="Default Avatar">
+                                    {% endif %}
+                                    <p class="user-place">{{ player.username }}</p>
+                                    <p class="user-scores">{{ player.wins }} побед</p>
+                                </div>
+                            </a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -147,10 +156,12 @@
                     }, 1000);
                 } else {
                     console.error('Ошибка:', data.message);
+                    document.getElementById('readyButton').innerText = 'Готов';
                 }
             })
             .catch(error => {
                 console.error('Ошибка при отправке:', error);
+                document.getElementById('readyButton').innerText = 'Готов';
             });
         }
 

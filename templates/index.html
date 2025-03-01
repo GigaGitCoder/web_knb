@@ -41,11 +41,15 @@
                 
                 {% if request.user.is_authenticated %} 
                 <div class="if-logged">
-                    <a href="{% url 'profile' %}">
-                        <img width="80" height="80" src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle"/>
+                    <a href="{% url 'profile' username=request.user.username %}">
+                        {% if user.profile_picture %}
+                            <img class="", height="80px", width="80px", style="border-radius: 50%;", src="{{ user.profile_picture.url }}" alt="Profile Avatar">
+                        {% else %}
+                            <img class="", height="80px", width="80px", src="https://img.icons8.com/ios-filled/100/FFFFFF/user-male-circle.png" alt="user-male-circle">
+                        {% endif %}
                     </a>
                     <div>
-                        <a href="{% url 'profile' %}"><p>{{ request.user.username }}</p></a>
+                        <a href="{% url 'profile' username=request.user.username %}"><p>{{ request.user.username }}</p></a>
                         <a href="{% url 'logout' %}" style="text-decoration: underline;">Logout</a>
                     </div>
                 </div>
@@ -146,13 +150,13 @@
 
                 <div class="social-links">
                     <a href="https://github.com/GigaGitCoder/web_knb">
-                        <img width="64" height="64" src="{% static 'images/Logo.svg' %}" alt="Logo">
+                        <img width="70" height="70" src="https://img.icons8.com/glyph-neue/64/FFFFFF/github.png" alt="github"/>
                     </a>
                     <a href="mailto:egorkholkin2018@gmail.com">
-                        <img width="64" height="64" src="https://img.icons8.com/ios-filled/50/FFFFFF/circled-envelope.png" alt="circled-envelope"/>
+                        <img width="40" height="40" src="https://img.icons8.com/ios-filled/50/FFFFFF/circled-envelope.png" alt="circled-envelope"/>
                     </a>
                     <a href="https://t.me/HappyFlameStudio">
-                        <img width="64" height="64" src="https://img.icons8.com/ios-filled/50/FFFFFF/telegram.png" alt="telegram"/>
+                        <img width="40" height="40" src="https://img.icons8.com/ios-filled/50/FFFFFF/telegram.png" alt="telegram"/>
                     </a>
                 </div>
             </div>

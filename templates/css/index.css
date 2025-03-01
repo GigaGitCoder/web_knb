@@ -8,9 +8,10 @@
     background: #142B42;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
+
 .headerBar {
     display: flex;
-    justify-content: space-between; /* Равномерное распределение пространства */
+    justify-content: space-between;
     align-items: center;
     height: 130px;
     margin-left: 100px;
@@ -26,62 +27,63 @@
 /* Стили для навигационных ссылок */
 .nav-links {
     display: flex;
-    gap: 20px; /* Расстояние между ссылками */
-    align-items: center; /* Выравнивание по вертикали */
+    gap: 20px;
+    align-items: center;
     padding: 0px;
+    font-size: 40px;
+}
+
+.div-reg-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 277px;
 }
 
 .if-logged {
     display: flex;
     column-gap: 10px;
+    width: 277px;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.DRL-menu{
-    gap: 20px;
+.DRL-menu {
+    gap: 15px;
     margin: 0px;
-    font-size: 40px;
-    display: inline-flex;
-    justify-content: space-between;
+    font-size: 25px;
+    display: flex;
+    width: 220px;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-
-
-.nav-links, .DRL-menu li{
+.nav-links, .DRL-menu li {
     background-color: #142B42;
     list-style: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px 15px;
     transition: 0.4s ease-in-out;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.75);
 }
 
-.nav-links:hover, .DRL-menu li:hover{
+.nav-links:hover, .DRL-menu li:hover {
     background-color: #616e8d;
     border-radius: 10px;
     transform: scale(1.1);
 }
 
-
-.if-logged p{
+.if-logged p {
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 30px;
-}
-
-.if-logged a:hover{
-    text-decoration: underline;
-
+    font-size: 25px;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 40px;
     text-transform: uppercase;
 }
-
 
 /* Стили для профиля пользователя */
 .userProfile {

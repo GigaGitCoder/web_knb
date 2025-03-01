@@ -20,3 +20,12 @@ class CustomAuthenticationForm(AuthenticationForm):
     
     username = forms.CharField(label='Логин', max_length=150)
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['profile_picture']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['profile_picture'].label = 'Аватар'

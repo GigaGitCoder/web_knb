@@ -154,11 +154,20 @@ body{
 .place{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: auto;
     background-color: #071422;
     border-radius: 15px;
     padding: 0px 20px;
 }
+
+.place a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
 .place p {
     display: flex;
 }
@@ -293,4 +302,19 @@ body{
     height: 100%;
     object-fit: cover; /* Чтобы видео заполняло контейнер */
     background-color: #717171; /* Фон на случай, если видео не загружено */
+}
+
+.user-info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
 }
