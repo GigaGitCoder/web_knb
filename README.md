@@ -113,7 +113,7 @@ python manage.py runserver
 <table>
 <tr>
 <td width="400px">
-<img src="media/leader-board-system.gif" width="400px">
+<img src="media/leader-board-system-github.gif" width="400px">
 </td>
 <td>
 <ul>
